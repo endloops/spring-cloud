@@ -1,0 +1,12 @@
+spring:
+  main:
+    banner-mode: "off"
+  application:
+    name: eureka-second
+server:
+  port: 8085
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:1111/eureka/
+      

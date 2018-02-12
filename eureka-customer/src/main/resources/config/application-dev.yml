@@ -1,0 +1,12 @@
+spring:
+  main:
+    banner-mode: "off"
+  application:
+    name: eureka-first
+server:
+  port: 8086
+  servlet-path: /eureka-first/*
+eureka:
+  client:
+    serviceUrl: 
+      defaultZone: http://localhost:1111/eureka/

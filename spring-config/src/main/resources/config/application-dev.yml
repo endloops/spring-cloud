@@ -1,0 +1,19 @@
+spring:
+  main:
+    banner-mode: "off"
+  application:
+    name: config
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/endloops/spring-cloud.git
+          search-paths:
+            - 
+server:
+  port: 8082
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:1111/eureka/
+      
