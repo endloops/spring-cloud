@@ -2,11 +2,20 @@ spring:
   main:
     banner-mode: "off"
   application:
-    name: eureka-second
+    name: eureka-customer
 server:
-  port: 8084
+  port: 8088
 eureka:
+  instance:
+    prefer-ip-address: true
+    metadata-map:
+      zone: zone2
   client:
-    serviceUrl:
-      defaultZone: http://localhost:1111/eureka/
+    prefer-same-zone-eureka: true
+    region: region2
+    availability-zones:
+      region2: zone2-2
+    serviceUrl: 
+      zone2-2: http://192.168.88.151:8082/mvtm-eureka-server2/eureka/
+      zone2-1: http://192.168.88.151:8081/mvtm-eureka-server/eureka/
       

@@ -1,0 +1,10 @@
+spring:
+  main:
+    banner-mode: "off"
+  application:
+    name: websocket
+  mvc:
+    view:
+      suffix: .jsp
+server:
+  port: 1234

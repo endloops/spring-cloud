@@ -1,0 +1,33 @@
+spring:
+  main:
+    banner-mode: "off"
+  application:
+    name: zuul1
+#ribbon请求连接的超时时间
+#ribbon.ConnectTimeout: 2050
+#请求处理的超时时间
+ribbon.ReadTimeout: 10000
+
+#对所有操作请求都进行重试
+#ribbon.OkToRetryOnAllOperations: true
+#对当前实例的重试次数
+#ribbon.MaxAutoRetries: 1
+#对下个实例的重试次数
+#ribbon.MaxAutoRetriesNextServer: 1
+hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 3000
+hystrix.command.default.execution.timeout.enabled: true
+zuul:
+  routes:
+    api-second:
+      path: /ceshi/**
+      service-id: eureka-second
+      retryable: true
+      
+server:
+  port: 8211
+  
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:1111/eureka/
+      

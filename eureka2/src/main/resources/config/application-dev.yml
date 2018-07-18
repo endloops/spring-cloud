@@ -1,0 +1,19 @@
+spring:
+  main:
+    banner-mode: "off"
+  application:
+    name: eureka-server
+server:
+  port: 1112
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+#    region: region2
+#    availability-zones:
+#      region2: zone1
+#    serviceUrl: 
+#      zone1: http://localhost:1112/eureka/
+#      

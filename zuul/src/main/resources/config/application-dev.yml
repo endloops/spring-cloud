@@ -1,0 +1,42 @@
+spring:
+  main:
+    banner-mode: "off"
+  application:
+    name: zuul
+#ribbon请求连接的超时时间
+#ribbon.ConnectTimeout: 2050
+#请求处理的超时时间
+ribbon.ReadTimeout: 10000
+
+#对所有操作请求都进行重试
+#ribbon.OkToRetryOnAllOperations: true
+#对当前实例的重试次数
+#ribbon.MaxAutoRetries: 1
+#对下个实例的重试次数
+#ribbon.MaxAutoRetriesNextServer: 1
+hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 30000
+hystrix.command.default.execution.timeout.enabled: true
+zuul:
+  routes:
+    api-second:
+      path: /ceshi/**
+      service-id: feiggn
+      retryable: true
+      
+server:
+  port: 8210
+  
+eureka:
+  instance:
+    prefer-ip-address: true
+    metadata-map:
+      region: region1
+      zone: zone1
+  client:
+#    region: region1
+#    availability-zones:
+#      region1: zone2
+#    prefer-same-zone-eureka: true
+    serviceUrl:
+#      zone2: http://pee2:8082/mvtm-eureka-server2/eureka/,http://pee1:8081/mvtm-eureka-server/eureka/
+      defaultZone: http://localhost:1112/eureka/

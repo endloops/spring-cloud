@@ -1,0 +1,9 @@
+spring:
+  main:
+    banner-mode: "console" 
+    web-environment: true
+  application:
+    name: staticResource
+server:
+  port: 8067    
+    

@@ -1,0 +1,7 @@
+spring:
+  main:
+    web-environment: true
+  application:
+    name: actuatorfirst
+server:
+  port: 8115

@@ -1,0 +1,7 @@
+spring:
+  main:
+    web-environment: true
+  application:
+    name: docker-demo 
+docker:
+  config: ${user.home}

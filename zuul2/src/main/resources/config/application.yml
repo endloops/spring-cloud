@@ -1,0 +1,9 @@
+spring:
+  main:
+    banner-mode: "console" 
+    web-environment: true
+  application:
+    name: zuul2  
+  profiles:
+    active: dev
+    

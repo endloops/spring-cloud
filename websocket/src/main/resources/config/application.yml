@@ -1,0 +1,9 @@
+spring:
+  main:
+    banner-mode: "console" 
+    web-environment: true
+  application:
+    name: websocket  
+  profiles:
+    active: dev
+    

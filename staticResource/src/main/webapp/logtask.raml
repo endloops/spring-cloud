@@ -1,0 +1,439 @@
+#%RAML 1.0
+title: Restful API
+version: v1.0
+baseUri: http://localhost:{port}/mvtm-haseoms-service-web
+baseUriParameters:
+  port:
+    type: integer
+    default: 80
+    description: access uri port
+protocols: HTTP
+mediaType: application/json
+types:
+  success:
+    type: object
+    description: status 200
+  error:
+    type: object
+    description: server-side exception
+    properties:
+      status:
+        type: string
+      code:
+        type: string
+      message:
+        type: string
+      developerMessage:
+        type: string
+      throwable:
+        type: string
+      time:
+        type: datetime-only
+      pratolLog:
+        type: boolean
+
+
+  fileName:
+       type: file
+       fileTypes: ['*/*'] # any file type allowed
+      #  maxLength: 1048576
+
+/taskFiles/upload/tasks/{taskId}/executors/{taskExecuteId}/tags/{tag}:
+  uriParameters:
+    taskId:
+      type: string
+      required: true
+      example: "1"
+      description: "任务的id"
+    taskExecuteId:
+      type: string
+      required: true
+      example: "2"
+      description: "执行的id"
+    tag:
+      type: string
+      required: true
+      example: "upload"
+      description: "上传文件的标签"
+  post:
+    description: 上传日志文件
+    body:
+      multipart/form-data:
+        schema: |
+          {
+          "type": "object",
+          "$schema": "http://json-schema.org/draft-03/schema",
+          "id": "http://jsonschema.net",
+          "required": true,
+          "properties": {
+              "taskId": {
+                "type":"string",
+                "required": true
+                },
+              "taskExecuteId": {
+                "type":"string",
+                "required": true
+                },
+               "tag":{
+               "type":"string",
+               "required": true
+                 }
+              }
+          }
+
+    responses:
+      200:
+        description: status 200
+        body:
+          application/json:
+            type: success
+            example: |
+              {
+              "logFilename": "1_2_ss.zip",
+              "parentPath": "1\\2\\"
+              }
+
+      500:
+        description: server-side exception
+        body:
+          application/json:
+            type: error
+            example:
+              {
+              "status": "INTERNAL_SERVER_ERROR",
+              "code": "E33106",
+              "message": "Invalid Argument",
+              "developerMessage": "[Assertion failed]",
+              "throwable": "IllegalArgumentException",
+              "time": "2017-06-23T11:13:19.029",
+              "pratolLog":false
+              }
+
+/taskFiles/download/tasks/{taskId}/executors/{taskExecuteId}/tags/{tag}:
+  uriParameters:
+    taskId:
+      type: string
+      required: true
+      example: "1"
+      description: "执行的id"
+    taskExecuteId:
+      type: string
+      required: true
+      example: "2"
+      description: "任务的id"
+    tag:
+      type: string
+      required: true
+      example: "ss"
+      description: "文件标签"
+  get:
+    description: 下载日志文件
+    responses:
+      200:
+        description: status 200
+        body:
+          application/json:
+            type: success
+      500:
+        description: server-side exception
+        body:
+          application/json:
+            type: error
+            example: |
+              {
+              "status": "INTERNAL_SERVER_ERROR",
+              "code": "E33550",
+              "message": "File not found",
+              "developerMessage": "File not found",
+              "throwable": "FileNotFoundException",
+              "time": "2017-06-23T11:13:19.029",
+              "pratolLog":false
+              }
+
+/taskFiles/upload/tasks/{taskId}:
+  uriParameters:
+    taskId:
+      type: string
+      required: true
+      example: "1"
+      description: "下载的更新包标识"
+  post:
+    description: 上传升级包
+    body:
+      application/json:
+        example: |
+          {
+            "name":"multipartFile",
+            "filename":"AO20170824162009_610481199211010037.zip"
+          }
+    responses:
+      200:
+        description: status 200
+        body:
+          application/json:
+            type: success
+      500:
+        description: server-side exception
+        body:
+          application/json:
+            type: error
+            example: |
+              {
+              "status": "INTERNAL_SERVER_ERROR",
+              "code": "E33550",
+              "message": "File not found",
+              "developerMessage": "File not found",
+              "throwable": "FileNotFoundException",
+              "time": "2017-06-23T11:13:19.029",
+              "pratolLog":false
+              }
+/taskFiles/download/tasks/{taskId}:
+  uriParameters:
+    taskId:
+      type: string
+      required: true
+      example: "31"
+      description: "执行的id"
+  get:
+    description: 下载日志文件(c#用)
+    responses:
+      200:
+        description: status 200
+        body:
+          application/json:
+            type: success
+      500:
+        description: server-side exception
+        body:
+          application/json:
+            type: error
+            example: |
+              {
+              "status": "INTERNAL_SERVER_ERROR",
+              "code": "E33550",
+              "message": "File not found",
+              "developerMessage": "File not found",
+              "throwable": "FileNotFoundException",
+              "time": "2017-06-23T11:13:19.029",
+              "pratolLog":false
+              }
+/tasks/{taskExecuteId}:
+  uriParameters:
+    taskExecuteId:
+      type: string
+      required: true
+      example: "1"
+      description: "task的id"
+  delete:
+    description: 根据前台传给后台需要删除的task的id，删除task
+    responses:
+      200:
+        description: status 200
+        body:
+          application/json:
+            type: success
+      500:
+        description: server-side exception
+        body:
+          application/json:
+            type: error
+            example: |
+              {
+              "status": "INTERNAL_SERVER_ERROR",
+              "code": "E31111",
+              "message": "Data Not Found",
+              "developerMessage": "Data Not Found",
+              "throwable": "DataNotFoundException",
+              "time": "2017-06-23T11:13:19.029",
+              "pratolLog":false
+              }
+/tasks/{id}:
+  uriParameters:
+    id:
+      type: integer
+      required: true
+      example: 1
+      description: "task的id"
+  put:
+    description: Task状态更改
+    body:
+      application/json:
+        example: |
+          {
+            "status":"Success",
+            "taskLastUpdate":"2018-03-16T18:48:37.563+0800"
+          }
+    responses:
+      200:
+        description: status 200
+        body:
+          application/json:
+            type: success
+            example: |
+              {
+              "id": 31,
+              "taskType": null,
+              "owner": null,
+              "taskCreate": "2018-03-16T18:48:37.563+0800",
+              "taskFileDate": null,
+              "meta": null,
+              "status": "Success"
+              }
+/tasks?taskType={taskType}&hostName={hostName}&status={status}&dateFrom={dateFrom}&dateTo={dateTo}:
+  uriParameters:
+    taskType:
+      type: string
+      required: false
+      example: "logupload"
+      description: "任务类型"
+    hostName:
+      type: string[]
+      required: false
+      description: "所有者"
+    status:
+      type: string[]
+      required: false
+      description: "任务文件状态"
+    dateFrom:
+      type: datetime-only
+      required: true
+      example: 2011-01-09T10:23:12.212
+      description: "开始时间"
+    dateTo:
+      type: datetime-only
+      required: true
+      example: 2011-01-09T12:23:12.232
+      description: "结束时间"
+
+  get:
+    description: 根据查询条件（日志类型，日志拥有者，日志生成时间）查询任务列表，若不输入任何查询条件时，则进行全查询
+    responses:
+      200:
+        description: status 200
+        body:
+          application/json:
+            type: success
+            example:
+              {
+                "content": [
+                  {
+                  "status": "create",
+                  "id": 34,
+                  "tid": 24,
+                  "taskCreate": "2018-03-16T19:14:22.077+0800",
+                  "taskLastUpdate": null,
+                  "taskType": "Upload",
+                  "terminalType": "MVTM",
+                  "hostname": "huifeng1",
+                    "taskException": null,
+                  "meta": "{\"processName\":\"\",\"args\":{\"paths\":null}}"
+                  },
+                  {
+                  "status": "create",
+                  "id": 33,
+                  "tid": 24,
+                  "taskCreate": "2018-03-16T19:14:22.077+0800",
+                  "taskLastUpdate": null,
+                  "taskType": "Upload",
+                  "terminalType": "MVTM",
+                  "hostname": "huifeng",
+                  "taskException": null,
+                  "meta": "{\"processName\":\"\",\"args\":{\"paths\":[{\"path\":\"C:\\\\Users\\\\Public\\\\Documents\\\\China Soft\\\\MVTMLog\",\"logType\":\"MVTMLog\",\"filters\":{\"name\":\"\",\"dateCreated\":\"2018-03-20T00:00:00.000+0800\"}}]}}"
+                },
+                {
+                  "status": "create",
+                  "id": 32,
+                  "tid": 23,
+                  "taskCreate": "2018-03-16T18:48:37.563+0800",
+                  "taskLastUpdate": null,
+                  "taskType": "Upload",
+                  "terminalType": "MVTM",
+                  "hostname": "huifeng1",
+                  "taskException": null
+                },
+                {
+                  "status": "create",
+                  "id": 31,
+                  "tid": 23,
+                  "taskCreate": "2018-03-16T18:48:37.563+0800",
+                  "taskLastUpdate": null,
+                  "taskType": "Upload",
+                  "terminalType": "MVTM",
+                  "hostname": "huifeng",
+                  "taskException": null
+                },
+                ],
+                "totalPages": 1,
+                "totalElements": 8,
+                "last": true,
+                "number": 0,
+                "size": 10,
+                "numberOfElements": 8,
+                "sort": [
+                 {
+                   "direction": "DESC",
+                   "property": "id",
+                   "ignoreCase": false,
+                   "nullHandling": "NATIVE",
+                   "ascending": false
+                 }
+                 ],
+               "first": true
+              }
+      500:
+        description: server-side exception
+        body:
+          application/json:
+            type: error
+            example:
+              {
+              "status": "INTERNAL_SERVER_ERROR",
+              "code": "E33106",
+              "message": "Invalid Argument",
+              "developerMessage": "[Assertion failed]",
+              "throwable": "IllegalArgumentException",
+              "time": "2017-06-23T11:13:19.029",
+              "pratolLog":false
+              }
+/tasks:
+  post:
+    description: 任务新建
+    body:
+      multipart/form-data:
+        facets:
+          formParameters:
+            file:
+              description: The file to be uploaded
+              required: true
+              type: file
+    responses:
+      200:
+        description: status 200
+        body:
+          application/json:
+            type: success
+            example: |
+              {
+              "id": null,
+              "taskType": null,
+              "owner": null,
+              "taskCreate": null,
+              "taskFileDate": null,
+              "meta": null,
+              "status": "Create"
+              }
+      500:
+        description: server-side exception
+        body:
+          application/json:
+            type: error
+            example:
+              {
+              "status": "INTERNAL_SERVER_ERROR",
+              "code": "E33106",
+              "message": "Invalid Argument",
+              "developerMessage": "[Assertion failed]",
+              "throwable": "IllegalArgumentException",
+              "time": "2017-06-23T11:13:19.029",
+              "pratolLog":false
+              }

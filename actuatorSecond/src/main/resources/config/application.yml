@@ -1,0 +1,12 @@
+spring:
+  main:
+    web-environment: true
+  application:
+    name: actuator
+server:
+  port: 8116
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

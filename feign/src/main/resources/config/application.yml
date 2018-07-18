@@ -1,0 +1,29 @@
+spring:
+  main:
+    banner-mode: "console" 
+    web-environment: true
+  application:
+    name: feiggn
+server:
+  port: 8170
+security:
+  basic:
+    enabled: false
+  user:
+    name: 11
+    password: 22
+eureka:
+#  instance:
+#    prefer-ip-address: true
+#    metadata-map:
+#      region: region1
+#      zone: zone1
+  client:
+#    region: region1
+#    availability-zones:
+#      region1: zone2
+#    prefer-same-zone-eureka: true
+    serviceUrl:
+#      zone2: http://pee2:8082/mvtm-eureka-server2/eureka/,http://pee1:8081/mvtm-eureka-server/eureka/
+      defaultZone: http://localhost:1112/eureka/
+    
