@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="error" monitorInterval="30" debug="true">
+    <Properties>
+        <Property name="contextName">webzuul</Property>
+<!--         <Property scope="context" name="level" value="DEBUG" /> -->
+    </Properties>
+    <Appenders>
+        <Console name="STDOUT" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d ${contextName} [%thread] %-5level %logger{36} - %msg%n" />
+        </Console>
+        <RollingFile name="RollingFileInfo" fileName="applog/logs/product-malaysia-web.txt"
+            filePattern="applog/logs/product-malaysia-web-%d{yyyy-MM-dd}-%i.txt">
+            <PatternLayout pattern="%d ${contextName} [%thread] %-5level %logger{36} - %msg%n" />
+            <Policies>
+                <TimeBasedTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="10MB" />
+            </Policies>
+            <DefaultRolloverStrategy max="100">
+                <Delete basePath="applog/logs" maxDepth="1">
+                    <IfFileName glob="product-malaysia-web-*.txt">
+                        <IfLastModified age="2m">
+                            <IfAny>
+                                <IfAccumulatedFileSize exceeds="1GB" />
+                                <IfAccumulatedFileCount exceeds="100" />
+                            </IfAny>
+                        </IfLastModified>
+                    </IfFileName>
+                </Delete>
+            </DefaultRolloverStrategy>
+        </RollingFile>
+        <Async name="Async">
+            <AppenderRef ref="RollingFileInfo" />
+        </Async>
+    </Appenders>
+    <Loggers>
+        <logger name="org.springframework.ws.client.MessageTracing" level="info" />
+        <logger name="org.springframework.context" level="info"></logger>
+        <logger name="org.springframework.core" level="info" />
+        <logger name="org.springframework.boot" level="debug"/> 
+        <logger name="org.dozer" level="info" />
+        <logger name="org.springframework.jndi" level="error"></logger>
+        <Root level="info">
+            <appender-ref ref="STDOUT" />
+            <appender-ref ref="Async" />
+        </Root>
+    </Loggers>
+</Configuration>

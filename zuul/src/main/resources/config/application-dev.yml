@@ -18,10 +18,15 @@ hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 30000
 hystrix.command.default.execution.timeout.enabled: true
 zuul:
   routes:
+    api-sss:
+      path: /websocket/websocket-simple/info/**
+      url: http://localhost:1234/websocket-simple/info/
     api-second:
-      path: /ceshi/**
-      service-id: feiggn
-      retryable: true
+      path: /websocket/websocket-simple/**
+      url: http://localhost:1234/websocket-simple/
+    api-ssss:
+      path: /websocket/**
+      url: http://localhost:1234/
       
 server:
   port: 8210

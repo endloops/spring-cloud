@@ -1,0 +1,20 @@
+2018-09-17 10:16:10,796 acuorets-web [main] INFO  com.cesi.actuatorfirst.controller.DesUtils - ******encry string********:VT01,1534935887690
+2018-09-17 10:16:11,084 acuorets-web [main] INFO  com.cesi.actuatorfirst.controller.DesUtils - ********decode string********: E7E85970E029114CB138D3B9777EE8DC42378735290ECAD9 
+2018-09-17 10:16:11,084 acuorets-web [main] INFO  com.cesi.actuatorfirst.controller.DesUtils - ******encry string********:VT01
+2018-09-17 10:16:11,085 acuorets-web [main] INFO  com.cesi.actuatorfirst.controller.DesUtils - ********decode string********: BD97ED6133481FA0 
+2018-09-17 10:16:11,085 acuorets-web [main] INFO  com.cesi.actuatorfirst.controller.DesUtils - ******encry string********:password
+2018-09-17 10:16:11,085 acuorets-web [main] INFO  com.cesi.actuatorfirst.controller.DesUtils - ********decode string********: FF3A2952BAECA9D2 
+2018-09-17 10:16:11,085 acuorets-web [main] INFO  com.cesi.actuatorfirst.controller.DesUtils - ******encry string********:1524645787495
+2018-09-17 10:16:11,086 acuorets-web [main] INFO  com.cesi.actuatorfirst.controller.DesUtils - ********decode string********: C8DAAFDE8BCA339EE8CD73EF032A9475 
+2018-09-17 10:16:11,086 acuorets-web [main] INFO  com.cesi.actuatorfirst.controller.DesUtils - ******encry string********:75DCC4B865A09C93
+2018-09-17 10:16:11,086 acuorets-web [main] INFO  com.cesi.actuatorfirst.controller.DesUtils - ********decode string********: wzzwwww 
+2018-09-17 10:16:54,862 acuorets-web [main] INFO  com.cesi.actuatorfirst.controller.DesUtils - ******encry string********:VT01,1534935887690
+2018-09-17 10:16:55,144 acuorets-web [main] INFO  com.cesi.actuatorfirst.controller.DesUtils - ********decode string********: E7E85970E029114CB138D3B9777EE8DC42378735290ECAD9 
+2018-09-17 10:16:55,145 acuorets-web [main] INFO  com.cesi.actuatorfirst.controller.DesUtils - ******encry string********:VT01
+2018-09-17 10:16:55,145 acuorets-web [main] INFO  com.cesi.actuatorfirst.controller.DesUtils - ********decode string********: BD97ED6133481FA0 
+2018-09-17 10:16:55,146 acuorets-web [main] INFO  com.cesi.actuatorfirst.controller.DesUtils - ******encry string********:password
+2018-09-17 10:16:55,146 acuorets-web [main] INFO  com.cesi.actuatorfirst.controller.DesUtils - ********decode string********: FF3A2952BAECA9D2 
+2018-09-17 10:16:55,146 acuorets-web [main] INFO  com.cesi.actuatorfirst.controller.DesUtils - ******encry string********:1524646887495
+2018-09-17 10:16:55,147 acuorets-web [main] INFO  com.cesi.actuatorfirst.controller.DesUtils - ********decode string********: 99723562FAF41D12BC9D940C7166396B 
+2018-09-17 10:16:55,147 acuorets-web [main] INFO  com.cesi.actuatorfirst.controller.DesUtils - ******encry string********:75DCC4B865A09C93
+2018-09-17 10:16:55,147 acuorets-web [main] INFO  com.cesi.actuatorfirst.controller.DesUtils - ********decode string********: wzzwwww 

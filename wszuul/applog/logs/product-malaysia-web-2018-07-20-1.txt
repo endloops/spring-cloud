@@ -1,0 +1,6 @@
+2018-07-20 10:49:31,060 webzuul [RMI TCP Connection(100)-192.168.88.49] INFO  org.springframework.boot.admin.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin - Application shutdown requested.
+2018-07-20 10:49:31,086 webzuul [RMI TCP Connection(100)-192.168.88.49] INFO  org.springframework.boot.web.reactive.context.AnnotationConfigReactiveWebServerApplicationContext - Closing org.springframework.boot.web.reactive.context.AnnotationConfigReactiveWebServerApplicationContext@226642a5: startup date [Thu Jul 19 17:26:20 CST 2018]; parent: org.springframework.context.annotation.AnnotationConfigApplicationContext@d29f28
+2018-07-20 10:49:31,191 webzuul [RMI TCP Connection(100)-192.168.88.49] INFO  org.springframework.context.support.DefaultLifecycleProcessor - Stopping beans in phase 0
+2018-07-20 10:49:31,204 webzuul [RMI TCP Connection(100)-192.168.88.49] INFO  org.springframework.jmx.export.annotation.AnnotationMBeanExporter - Unregistering JMX-exposed beans on shutdown
+2018-07-20 10:49:31,211 webzuul [RMI TCP Connection(100)-192.168.88.49] INFO  org.springframework.jmx.export.annotation.AnnotationMBeanExporter - Unregistering JMX-exposed beans
+2018-07-20 10:49:31,262 webzuul [RMI TCP Connection(100)-192.168.88.49] INFO  reactor.ipc.netty.tcp.BlockingNettyContext - Stopped HttpServer on /0:0:0:0:0:0:0:0:8210

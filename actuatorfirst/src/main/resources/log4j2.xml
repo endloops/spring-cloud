@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="error" monitorInterval="30">
+	<Properties>
+		<Property name="contextName">acuorets-web</Property>
+		<!-- <Property scope="context" name="level" value="DEBUG" /> -->
+	</Properties>
+	<Appenders>
+		<!-- <JDBC name="databaseAppender" tableName="SOAPXMLRECORD"> -->
+		<!-- Tomcat 配置 -->
+		<!-- <DataSource jndiName="java:/comp/env/jdbc/mvtmDataSource" /> -->
+		<!-- was 配置 -->
+		<!-- <DataSource jndiName="jdbc/mvtmDataSource" /> -->
+		<!-- <Column name="CREATEDATE" pattern="%d" /> -->
+		<!-- <Column name="ID" literal="log4j_seq.nextval"></Column> -->
+		<!-- <Column name="WHICHLEVEL" pattern="%level" /> -->
+		<!-- <Column name="LOGGER" pattern="%logger" /> -->
+		<!-- <Column name="MESSAGE" pattern="%message" /> -->
+		<!-- <Column name="BUSINESS" pattern="%X{business}"></Column> -->
+		<!-- <Column name="METHOD" pattern="%X{method}"></Column> -->
+		<!-- <Column name="TRANSACTIONID" pattern="%X{transactionId}"></Column> -->
+		<!-- </JDBC> -->
+		<!-- <Socket name="socket" host="localhost" port="4560"> -->
+		<!-- <JsonLayout properties="true" /> -->
+		<!-- <SerializedLayout/> -->
+		<!-- </Socket> -->
+<!-- 		<Kafka name="Kafka" topic="tests"> -->
+		
+<!-- 			<PatternLayout pattern="%date %message" /> -->
+<!-- 			<Property name="bootstrap.servers">132.232.89.207:9092</Property> -->
+<!-- 		</Kafka> -->
+		<Console name="STDOUT" target="SYSTEM_OUT">
+			<PatternLayout
+				pattern="%d ${contextName} [%thread] %-5level %logger{36} - %msg%n" />
+		</Console>
+		<RollingFile name="RollingFileInfo" fileName="applog/logs/product-task-web.txt"
+			filePattern="applog/logs/acuorets-web-%d{yyyy-MM-dd}-%i.txt">
+			<PatternLayout
+				pattern="%d ${contextName} [%thread] %-5level %logger{36} - %msg%n" />
+			<Policies>
+				<TimeBasedTriggeringPolicy />
+				<SizeBasedTriggeringPolicy size="10MB" />
+			</Policies>
+			<DefaultRolloverStrategy max="100">
+				<Delete basePath="applog/logs" maxDepth="1">
+					<IfFileName glob="acuorets-web-*.txt">
+						<IfLastModified age="2m">
+							<IfAny>
+								<IfAccumulatedFileSize exceeds="1GB" />
+								<IfAccumulatedFileCount exceeds="100" />
+							</IfAny>
+						</IfLastModified>
+					</IfFileName>
+				</Delete>
+			</DefaultRolloverStrategy>
+		</RollingFile>
+		<Async name="Async">
+			<AppenderRef ref="RollingFileInfo" />
+		</Async>
+	</Appenders>
+	<Loggers>
+		<!-- <Logger name="com.chinasofti.vtc.core.hub.integration.SOAPHeaderMapper" 
+			level="trace" additivity="false"> -->
+		<!-- <appender-ref ref="databaseAppender"></appender-ref> -->
+		<!-- </Logger> -->
+		<!-- <Logger name="com.chinasofti.vtc.service.gboss.record.GbossInfromationToDataBase" 
+			level="trace"> -->
+		<!-- <appender-ref ref="databaseAppender"></appender-ref> -->
+		<!-- </Logger> -->
+		<!-- <Logger name="com.chinasofti.vtc.service.gboss.GbossServiceTransformer" 
+			level="trace"> -->
+		<!-- <appender-ref ref="databaseAppender" /> -->
+		<!-- </Logger> -->
+		<!-- <Logger name="com.chinasofti.vtc.core.hub.impl.HubSolutionServiceImpl" 
+			level="trace"> -->
+		<!-- <appender-ref ref="databaseAppender" /> -->
+		<!-- </Logger> -->
+		<logger name="org.springframework.ws.client.MessageTracing"
+			level="info" />
+		<logger name="org.springframework.context" level="info"></logger>
+		<logger name="org.springframework.core" level="info" />
+		<logger name="org.springframework.boot" level="debug" />
+		<logger name="org.springframework.security" level="trace" />
+		<logger name="org.springframework.jndi" level="error"></logger>
+		<logger name="org.dozer" level="info" />
+		<logger name="com.netflix.discovery" level="error"></logger>
+		<Root level="info">
+<!-- 			<appender-ref ref="Kafka"></appender-ref> -->
+			<appender-ref ref="socket"></appender-ref>
+			<appender-ref ref="STDOUT" />
+			<appender-ref ref="Async" />
+		</Root>
+	</Loggers>
+</Configuration>

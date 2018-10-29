@@ -1,0 +1,32 @@
+spring:
+  main:
+    banner-mode: "console" 
+  application:
+    name: zuul
+#  profiles:
+#    active: dev    
+  cloud:
+    gateway:
+      routes:
+      - id: websocket_route
+        uri: http://localhost:1234
+        predicates:
+        - Path=/websocket/**
+        filters:
+          - RewritePath=/websocket/(?<segment>.*), /$\{segment}
+      - id: websocket-info
+        uri: http://localhost:1234
+        predicates:
+        - Path=/websocket-simple/info/**
+      - id: websocket-ws
+        uri: ws://localhost:1234
+        predicates:
+        - Path=/websocket-simple/**
+server:
+  port: 8210
+hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 60000
+hystrix.command.default.execution.timeout.enabled: true
+ribbon:
+  ReadTimeout: 60000
+  ConnectTimeout: 30000
+    

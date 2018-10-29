@@ -29,14 +29,13 @@ public class WebSocketMessageBrokerConfigurer extends AbstractWebSocketMessageBr
 		registry
 		// "STOMP broker relay"处理所有消息将消息发送到外部的消息代理
                 .enableStompBrokerRelay("/exchange")
-                .setRelayHost("localhost")
-                .setRelayPort(5672)
-//                .setClientLogin("guest")
-//                .setClientPasscode("guest")
-//                .setSystemLogin("guest")
-//                .setSystemPasscode("guest")
-//                .setSystemHeartbeatSendInterval(5000)
-//                .setSystemHeartbeatReceiveInterval(4000)
+                .setRelayHost("192.168.88.49")
+                .setClientLogin("admin")
+                .setClientPasscode("root")
+                .setSystemLogin("admin")
+                .setSystemPasscode("root")
+                .setSystemHeartbeatSendInterval(5000)
+                .setSystemHeartbeatReceiveInterval(4000)
                 ;
 
     }
