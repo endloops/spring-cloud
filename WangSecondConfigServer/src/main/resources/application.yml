@@ -1,0 +1,21 @@
+spring:
+#  profiles:
+#    active: native
+  application:
+    name: configserver
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: file:///C:\Users\wang\git\config-git\product-config\api,file:///C:\Users\wang\git\config-git\product-config\oauth2
+        git:
+          uri: https://github.com/endloops/spring-config-repository.git
+          search-paths: /product-config/{application}
+          default-label: master
+          force-pull: true
+          username: endloops
+          password: 153246w@
+#  jmx:
+#    default-domain: configserver
+server:
+  port: 8888

@@ -1,0 +1,12 @@
+logging:
+  pattern:
+    level: debug
+securityldap:
+  url: ldaps://localhost:636/dc=example,dc=com
+  base: cn=admin
+  userDn: cn=admin
+  password: 153246w@
+  userOu: ou=application
+  group: ou=application
+  keystorename: C:\Users\wang\Desktop\loopPrivate\oud\truststore
+  keystorepassword: 11111111111111111111111

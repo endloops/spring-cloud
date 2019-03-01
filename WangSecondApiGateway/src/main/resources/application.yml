@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: api
+  profiles:
+    active: ${profiles}
+  cloud:
+    config:
+#     在本地测试时，下面的uri需要改成自己的product-config-server项目所在的服务器地址,目前的配置是部署在服务的config-server配置
+      uri: http://localhost:8888/configserver/
+      label: master
+      fail-fast: true
