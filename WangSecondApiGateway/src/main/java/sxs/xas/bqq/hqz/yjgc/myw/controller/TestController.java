@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import sxs.xas.bqq.hqz.yjgc.myw.controller.bean.TestBean;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/apis")
 public class TestController {
 
 	@ResponseBody

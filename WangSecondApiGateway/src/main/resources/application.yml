@@ -1,4 +1,12 @@
+server:
+  port: 8123
+  context-path: /apis
 spring:
+  mail:
+    host: smtp.163.com
+    username: 13649283825@163.com
+    password: 153246w
+    
   application:
     name: api
   profiles:
@@ -9,3 +17,8 @@ spring:
       uri: http://localhost:8888/configserver/
       label: master
       fail-fast: true
+security:
+  oauth2:
+    resource:
+      jwt:
+        key-value: secret

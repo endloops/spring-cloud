@@ -113,7 +113,7 @@ public class Oauth2Security extends WebSecurityConfigurerAdapter {
 				.loginPage("/login.html").loginProcessingUrl("/login")
 				.failureUrl("/login.html?authentication_error=true").and().logout().logoutUrl("/logout")
 				.logoutSuccessUrl("/logout.html").and().csrf().disable().sessionManagement()
-				.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED).and().httpBasic()
+				.sessionCreationPolicy(SessionCreationPolicy.NEVER).and().httpBasic()
 				.realmName("authorizationServer");
 
 	}

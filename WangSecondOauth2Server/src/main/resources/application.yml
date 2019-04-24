@@ -1,11 +1,13 @@
 logging:
   pattern:
     level: debug
+server:
+  port: 8234
 securityldap:
-  url: ldaps://localhost:636/dc=example,dc=com
+  url: ldaps://localhost:1636/dc=example,dc=com
   base: cn=admin
   userDn: cn=admin
-  password: 153246w@
+  password: password
   userOu: ou=application
   group: ou=application
   keystorename: C:\Users\wang\Desktop\loopPrivate\oud\truststore
