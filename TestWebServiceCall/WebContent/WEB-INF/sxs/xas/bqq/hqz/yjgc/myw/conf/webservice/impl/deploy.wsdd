@@ -1,0 +1,26 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from DemoServiceImplService WSDL service -->
+
+  <service name="DemoServiceImplPort" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://impl.webservice.conf.myw.yjgc.hqz.bqq.xas.sxs/"/>
+      <parameter name="wsdlServiceElement" value="DemoServiceImplService"/>
+      <parameter name="schemaUnqualified" value="http://webservice.conf.myw.yjgc.hqz.bqq.xas.sxs/"/>
+      <parameter name="wsdlServicePort" value="DemoServiceImplPort"/>
+      <parameter name="className" value="sxs.xas.bqq.hqz.yjgc.myw.conf.webservice.impl.DemoServiceImplServiceSoapBindingSkeleton"/>
+      <parameter name="wsdlPortType" value="DemoService"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <parameter name="allowedMethods" value="*"/>
+
+  </service>
+</deployment>

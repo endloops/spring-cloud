@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://impl.webservice.conf.myw.yjgc.hqz.bqq.xas.sxs/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns2="http://schemas.xmlsoap.org/soap/http" xmlns:ns1="http://webservice.conf.myw.yjgc.hqz.bqq.xas.sxs/" name="DemoServiceImplService" targetNamespace="http://impl.webservice.conf.myw.yjgc.hqz.bqq.xas.sxs/">
+  <wsdl:import location="http://localhost:8989/demo/api?wsdl=DemoService.wsdl" namespace="http://webservice.conf.myw.yjgc.hqz.bqq.xas.sxs/">
+    </wsdl:import>
+  <wsdl:binding name="DemoServiceImplServiceSoapBinding" type="ns1:DemoService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="sayHello">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="sayHello">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="sayHelloResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="DemoServiceImplService">
+    <wsdl:port binding="tns:DemoServiceImplServiceSoapBinding" name="DemoServiceImplPort">
+      <soap:address location="http://localhost:8989/demo/api"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
