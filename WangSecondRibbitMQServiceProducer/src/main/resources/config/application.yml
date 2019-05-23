@@ -1,0 +1,33 @@
+spring:
+  rabbitmq:
+    addresses: 132.232.89.207:5672
+    username: admin
+    password: 123456
+    virtual-host: /
+    connection-timeout: 15000
+    publisher-confirms: true
+    publisher-returns: true
+    template:
+      mandatory: true
+  http:
+    encoding:
+      charset: UTF-8
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://localhost:3306/rabbitqueue?characterEncoding=UTF-8&autoReconnect=true
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: root
+mybatis:
+  type-aliases-package: sxs.xas.bqq.hqz.yjgc.myw.entity
+  mapper-locations:
+    - classpath:mapping/*.xml
+    
+server:
+  servlet:
+    path: /customer
+  port: 9012
+      

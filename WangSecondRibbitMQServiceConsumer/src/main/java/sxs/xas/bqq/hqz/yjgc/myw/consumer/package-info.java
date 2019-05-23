@@ -5,4 +5,4 @@
  * @author wang
  *
  */
-package sxs.xas.bqq.hqz.yjgc.myw.producer;
+package sxs.xas.bqq.hqz.yjgc.myw.consumer;
