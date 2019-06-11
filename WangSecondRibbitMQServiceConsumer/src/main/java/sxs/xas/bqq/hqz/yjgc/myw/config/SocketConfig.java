@@ -2,6 +2,7 @@ package sxs.xas.bqq.hqz.yjgc.myw.config;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -15,6 +16,8 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBroker;
 import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
 import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerConfigurer;
+
+import sxs.xas.bqq.hqz.yjgc.myw.utils.VtaStatus;
 
 
 @Configuration
@@ -30,7 +33,11 @@ public class SocketConfig implements WebSocketMessageBrokerConfigurer {
 	 */
 	@Override
 	public void registerStompEndpoints(StompEndpointRegistry registry) {
-		registry.addEndpoint("/monitorEndpoint").setAllowedOrigins("*").withSockJS();
+		registry
+		.addEndpoint("/monitorEndpoint")
+		.setAllowedOrigins("*")
+		.setHandshakeHandler(new PrincipalDefaultHandshakeHandler())
+		.withSockJS();
 	}
 
 	/**
@@ -45,7 +52,8 @@ public class SocketConfig implements WebSocketMessageBrokerConfigurer {
 		taskScheduler.setThreadNamePrefix("websocket-heartbeat-thread-");
 		// 初始化
 		taskScheduler.initialize();
-		registry.enableSimpleBroker("/topic")
+		registry.enableSimpleBroker("/topic","/userTest");
+		registry.setUserDestinationPrefix("/user")
 //		.setHeartbeatValue(new long[] { 10000, 10000 })
 //		.setTaskScheduler(taskScheduler)
 				;
@@ -66,5 +74,15 @@ public class SocketConfig implements WebSocketMessageBrokerConfigurer {
 		Map<String, Object> header = new HashMap<String, Object>();
 		header.put(MessageHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON);
 		return new MessageHeaders(header);
+	}
+	@Bean
+	public Map<String, VtaStatus> users() {
+		Map<String, VtaStatus> concurrentHashMap = new ConcurrentHashMap<>();
+		return concurrentHashMap;
+	}
+	@Bean
+	public Map<String, String> applications() {
+		Map<String, String> applications = new ConcurrentHashMap<>();
+		return applications;
 	}
 }
